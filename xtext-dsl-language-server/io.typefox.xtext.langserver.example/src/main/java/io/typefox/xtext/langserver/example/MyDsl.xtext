@@ -1,0 +1,55 @@
+grammar io.typefox.xtext.langserver.example.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.typefox.io/xtext/langserver/example/MyDsl"
+
+Domainmodel:
+	(elements+=MainElement)*
+;
+
+MainElement:
+	FileName | Type 
+;
+
+Type:
+	Component | Layer | Description | Category | Entity | Comment
+;
+
+FileName:
+	'projection' name=ID ';'
+;
+
+Component:
+	'component' name=ID ';'
+;
+
+Layer:
+	'layer' name=ID ';'
+;
+
+Description:
+	'description' string=STRING ';'
+;
+
+List:
+	Users | Developers
+;
+
+Users:
+	'Users'
+;
+
+Developers:
+	'Developers'
+;
+
+Category:
+	'category' lists=List ';'
+;
+
+Entity:
+	'entityset' name=ID 'for' name2=ID ';'
+;
+
+Comment:
+	'-----------------------------' string= '-----------------------------'
+;
